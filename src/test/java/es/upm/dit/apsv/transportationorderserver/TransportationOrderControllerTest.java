@@ -80,6 +80,26 @@ public class TransportationOrderControllerTest {
                    .andReturn();
     }
 
+    @Test
+    public void testGetOrderFail() throws Exception {
+     //call GET "/transportationorders/{truck}"  application/json
+
+     when(repository.findById("8962ZKR")).thenReturn(Optional.of(
+              new TransportationOrder("28","8962ZKR",1591682400000L,
+              40.4562191,-3.8707211,1591692196000L,42.0206372,-4.5330132,
+              0,0.0,0.0,0)));
+
+     // now write the rest of the test case...
+
+    RequestBuilder request = MockMvcRequestBuilders
+                   .get("/transportationorders/862ZKR")
+                   .accept(MediaType.APPLICATION_JSON);
+              
+    MvcResult result = mockMvc.perform(request)
+                   .andExpect(status().is4xxClientError())
+                   .andReturn();
+    }
+
 
     private List<TransportationOrder> getAllTestOrders(){
 
