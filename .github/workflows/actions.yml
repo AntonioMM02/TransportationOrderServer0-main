@@ -110,7 +110,7 @@ jobs:
 
           tags: ghcr.io/antoniomm02/tos:latest
 
-deploy:
+  deploy:
 
     needs: verify-and-package
 
